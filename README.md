@@ -14,6 +14,16 @@ For this project there should be
 ## To Run Test
 * sbt test
 
+## Specific Input and Output Path
+We can setup a input and output path for execution in **application.conf**
+```
+{
+  input : "src/main/resources/data.csv"
+  output : "src/main/resources/parse.json"
+}
+
+```
+
 ## Execution
 * for execution run  cd to project (cd one-championship)
 * Run command **sbt run**
