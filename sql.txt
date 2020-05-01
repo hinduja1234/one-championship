@@ -1,0 +1,29 @@
+create table events(id int, event_name text, people_count integer);
+      insert into events values
+      (1, 'event1', 102),
+      (2, 'event1', 105),
+      (3, 'event1', 106),
+      (4, 'event1', 107),
+      (5, 'event2', 108),
+      (6, 'event2', 109),
+      (7, 'event3', 99),
+      (8, 'event3', 98),
+      (9, 'event3', 97),
+      (10, 'event4', 101),
+      (11, 'event4', 102),
+      (12, 'event5', 103),
+      (13, 'event1', 107),
+      (14, 'event1', 107),
+      (15, 'event4', 104);
+
+with idsame as
+      (
+          select id, event_name, people_count,
+                 (id - count(*) over (partition by event_name order by id)) rn
+          from   events
+          where  people_count >= 100
+      )
+      select   id, event_name, people_count from idsame where rn in (
+          select rn from idsame
+          group by rn having count(*) >= 3
+      );
