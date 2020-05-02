@@ -9,8 +9,7 @@ The assignment is to write a
 ## Prerequisite
 For this project there should be
  * **sbt** installed
- * **spark 1.5.2** present
-
+ 
 ## To Run Test
 * sbt test
 
